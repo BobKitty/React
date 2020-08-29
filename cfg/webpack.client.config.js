@@ -1,4 +1,6 @@
 const path = require('path'); // создаем относительный путь в абослютный
+const { HotModuleReplacementPlugin } = require('webpack');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
 const NODE_ENV = process.env.NODE_ENV; // не понял что это но для свойства mode
 const IS_DEV = NODE_ENV === 'development';
@@ -11,13 +13,20 @@ function setupDevtool() {
 
 module.exports = {
     resolve: { // учим webpack читать другие расширения файлов
-        extensions: ['.js', '.jsx', '.ts', '.tsx', '.json'] // прописываем все расширения тк он перезаписывает дефолтные
+        extensions: ['.js', '.jsx', '.ts', '.tsx', '.json'], // прописываем все расширения тк он перезаписывает дефолтные
+        alias: {
+            'react-dom': IS_DEV ? '@hot-loader/react-dom' : 'react-dom',
+        }
     },
     mode: NODE_ENV ? NODE_ENV : 'development',// настраиваем mode из-за warning 'production' or 'development'
-    entry: path.resolve(__dirname, '../src/client/index.jsx'), // скажем webpack откуда начинать
+    entry: [ // скажем webpack откуда начинать
+        path.resolve(__dirname, '../src/client/index.jsx'),
+        'webpack-hot-middleware/client?path=http://localhost:3001/static/__webpack_hmr',
+    ],
     output: { // пропишем куда это все будет складывать
         path: path.resolve(__dirname, '../dist/client'),
-        filename: 'client.js'
+        filename: 'client.js',
+        publicPath: '/static/'
     },
     module: { // подрубаем модули (обычно это лоадеры)
         rules: [{ // подрубаем loaders (минимум 2 свойства)
@@ -26,4 +35,10 @@ module.exports = {
         }]
     },
     devtool: setupDevtool(),
+    plugins: IS_DEV
+        ? [
+            new CleanWebpackPlugin(),
+            new HotModuleReplacementPlugin(),
+        ]
+        : [],
 }
