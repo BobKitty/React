@@ -17,10 +17,27 @@ module.exports = {
     },
     externals: [nodeExternals()],
     module: { // подрубаем модули (обычно это лоадеры)
-        rules: [{ // подрубаем loaders (минимум 2 свойства)
-            test: /\.[tj]sx?$/, // регулярка, которая будет чекать какие расширения мы будем обрабатывать (.tsx or .jsx)
-            use: ['ts-loader'] // и будем их обрабатывать
-        }]
+        rules: [
+            { // подрубаем loaders (минимум 2 свойства)
+                test: /\.[tj]sx?$/, // регулярка, которая будет чекать какие расширения мы будем обрабатывать (.tsx or .jsx)
+                use: ['ts-loader'] // и будем их обрабатывать
+            }, {
+                test: /\.scss$/,
+                use: [
+                    {
+                        loader: 'css-loader',
+                        options: {
+                            modules: {
+                                mode: 'local',
+                                localIdentName: '[name]__[local]--[hash:base64:5]',
+                            },
+                            onlyLocals: true,
+                        }
+                    },
+                    'sass-loader',
+                ],
+            }
+        ]
     },
     optimization: {
         minimize: false,

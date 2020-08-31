@@ -29,10 +29,28 @@ module.exports = {
         publicPath: '/static/'
     },
     module: { // подрубаем модули (обычно это лоадеры)
-        rules: [{ // подрубаем loaders (минимум 2 свойства)
-            test: /\.[tj]sx?$/, // регулярка, которая будет чекать какие расширения мы будем обрабатывать (.tsx or .jsx)
-            use: ['ts-loader'] // и будем их обрабатывать
-        }]
+        rules: [ // подрубаем loaders (минимум 2 свойства)
+            {
+                test: /\.[tj]sx?$/, // регулярка, которая будет чекать какие расширения мы будем обрабатывать (.tsx or .jsx)
+                use: ['ts-loader'], // и будем их обрабатывать
+            },
+            {
+                test: /\.scss$/,
+                use: [
+                    'style-loader',
+                    {
+                        loader: 'css-loader',
+                        options: {
+                            modules: {
+                                mode: 'local',
+                                localIdentName: '[name]__[local]--[hash:base64:5]',
+                            }
+                        },
+                    },
+                    'sass-loader',
+                ],
+            }
+        ]
     },
     devtool: setupDevtool(),
     plugins: IS_DEV
