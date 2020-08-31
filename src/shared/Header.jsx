@@ -4,7 +4,7 @@ import * as React from 'react';
 function HeaderComponent() {
     return (
         <header>
-            <h1>Reddit for our own!!! NEW HUY</h1>
+            <h1>Reddit for our own!!! NEW HUY Leha</h1>
         </header>
     );
 }
