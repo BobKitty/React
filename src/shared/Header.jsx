@@ -6,7 +6,7 @@ function HeaderComponent() {
     console.log(styles);
     return (
         <header>
-            <h1 className={styles.example}>Reddit for our own!!! NEW HUY Leha</h1>
+            <h1 className={styles.example}>Test</h1>
         </header>
     );
 }
