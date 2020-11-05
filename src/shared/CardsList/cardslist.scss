@@ -1,0 +1,8 @@
+@import
+  '/src/variables';
+
+.cardList {
+  @include lg-max {
+    padding: 40px 0;
+  }
+}

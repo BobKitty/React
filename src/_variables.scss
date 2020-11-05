@@ -1,0 +1,39 @@
+$color-black: #333333;
+$color-orange: #CC6633;
+$color-green: #A4CC33;
+$color-white: #ffffff;
+$color-greyF4: #f4f4f4;
+$color-greyF3: #f3f3f3;
+$color-greyD9: #d9d9d9;
+$color-greyC4: #c4c4c4;
+$color-grey99: #999999;
+$color-grey66: #666666;
+
+// breakpoints
+$grid-sm: 576px;
+$grid-md: 768px;
+$grid-lg: 1024px;
+$grid-xl: 1540px;
+
+/* media */
+
+@mixin sm-max {
+  @media (min-width: #{$grid-sm}) {
+    @content;
+  }
+}
+@mixin md-max {
+  @media (min-width: #{$grid-md}) {
+    @content;
+  }
+}
+@mixin lg-max {
+  @media (min-width: #{$grid-lg}) {
+    @content;
+  }
+}
+@mixin xl-max {
+  @media (min-width: #{$grid-xl}) {
+    @content;
+  }
+}

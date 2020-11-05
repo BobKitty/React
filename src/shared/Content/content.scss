@@ -1,0 +1,9 @@
+@import
+'/src/variables';
+
+.content {
+  @include lg-max {
+    background-color: $color-white;
+    border-radius: 7px 7px 0 0;
+  }
+}

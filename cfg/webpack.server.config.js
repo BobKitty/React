@@ -3,6 +3,7 @@ const path = require('path'); // создаем относительный пу�
 const nodeExternals = require('webpack-node-externals'); // пакет который отключает лишние модули для сервера
 
 const NODE_ENV = process.env.NODE_ENV; // не понял что это но для свойства mode
+const GLOBAL_CSS_REGEXP = /\.global\.css$/;
 
 module.exports = {
     target: 'node', //означает что билд будет подготовлен только для node.js

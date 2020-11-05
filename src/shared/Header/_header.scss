@@ -1,0 +1,15 @@
+@import
+'/src/variables';
+
+.header {
+  @include lg-max {
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    padding: 40px;
+  }
+
+  @include xl-max {
+    padding: 67px 0;
+  }
+}
