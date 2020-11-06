@@ -1,0 +1,42 @@
+@import "/src/variables";
+
+.menu {
+  position: absolute;
+  top: 17px;
+  right: 15px;
+
+  @include lg-max {
+    order: 3;
+    top: calc(50% - 15px);
+    right: 62px;
+  }
+
+  @include xl-max {
+    right: 122px;
+  }
+}
+
+.menuButton {
+  width: 31px;
+  height: 31px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transform: rotate(90deg);
+  border-radius: 31px;
+  background: transparent;
+  border: 0;
+
+  &:hover {
+    background-color: rgba(51, 51, 51, 0.1);
+  }
+
+  @include lg-max {
+    align-self: center;
+    transform: unset;
+  }
+
+  &:active, &:hover {
+    background-color: rgba(51, 51, 51, 0.1);
+  }
+}
